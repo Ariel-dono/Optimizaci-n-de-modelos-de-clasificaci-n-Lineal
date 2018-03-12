@@ -75,7 +75,7 @@ def gray_scale(img):
     img.shape = (3, rowSize)
     pixelForm = []
     for i in range(0, rowSize):
-        pixelForm = pixelForm + [np.around(np.divide(int(img[0][i]) + int(img[1][i]) + int(img[2][i]), 3))]
+        pixelForm = pixelForm + [int(np.around(0.21*int(img[0][i]) + 0.72*int(img[1][i]) + 0.07*int(img[2][i])))]
     return pixelForm
 
 

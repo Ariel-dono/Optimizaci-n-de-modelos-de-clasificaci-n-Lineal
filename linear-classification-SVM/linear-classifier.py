@@ -30,12 +30,12 @@ def fittest_selection_matching(fitest_individuals):
 def mutate_population(child):
     result = child
     mutations_index = np.array(np.abs(norm.rvs(scale=len(child)/2, size=2)), dtype=int)
-    resetInvalidPositions = np.array(mutations_index < 1024, dtype=int)
+    resetInvalidPositions = np.array(mutations_index < len(child), dtype=int)
     mutations_index = mutations_index * resetInvalidPositions
     mutableData = result[mutations_index[0]]
-    result[mutations_index[0]] = mutableData + random.randrange(50)
+    result[mutations_index[0]] = mutableData + random.randrange(22)
     mutableData = result[mutations_index[1]]
-    result[mutations_index[1]] = mutableData - random.randrange(50)
+    result[mutations_index[1]] = mutableData - random.randrange(22)
     return result
 
 
@@ -98,7 +98,7 @@ def iris_loader():
 
 # Getting acceptable solution
 def stop_condition(genValidation, loss, threshold):
-    if threshold >= loss[0]:
+    if threshold >= round(loss[0]):
         entering = False
     else:
         if len(loss) >= genValidation:
@@ -148,4 +148,4 @@ def linear_model_optimization(probabilityDistribution, initializer, matching, mu
 
 linear_model_optimization(chi2.rvs, set_up_population, fittest_selection_matching, mutate_population,
                           crossing, crossover, linear_classifier, loadCIFAR10, stop_condition,
-                          data_visualization, 16, 100, 4, 160, 256, 4)
+                          data_visualization, 16, 80, 4, 160, 256, 4)
