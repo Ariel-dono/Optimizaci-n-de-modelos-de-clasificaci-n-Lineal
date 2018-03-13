@@ -5,3 +5,4 @@ El presente se trata de un proyecto de investigación de orden académico, en el
 El modelo se construye en base a una función de pérdida, en este caso Hinge, para determinar el indice de adaptabilidad de un individuo (máquina de soporte vectorial), y que se relaciona con que tan certero es un modelo.
 
 Para más detalles consulte [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+
