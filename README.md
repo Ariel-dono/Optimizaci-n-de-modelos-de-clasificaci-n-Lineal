@@ -6,4 +6,5 @@ El modelo se construye en base a una función de pérdida, en este caso Hinge, p
 
 Para más detalles consulte [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-![Childhood's end - Arthur C. Clarke](http://www.uploadmegaquotes.com/wp-content/uploads/Best-Quotes-by-Arthur-C.-Clarke-about-Technology.png)
+
+### "Any sufficiently advanced technology is indistinguishable from magic" (Childhood's end - Arthur C. Clarke)
