@@ -33,9 +33,9 @@ def mutate_population(child):
     resetInvalidPositions = np.array(mutations_index < len(child), dtype=int)
     mutations_index = mutations_index * resetInvalidPositions
     mutableData = result[mutations_index[0]]
-    result[mutations_index[0]] = mutableData + random.randrange(22)
+    result[mutations_index[0]] = mutableData + random.randrange(20)
     mutableData = result[mutations_index[1]]
-    result[mutations_index[1]] = mutableData - random.randrange(22)
+    result[mutations_index[1]] = mutableData - random.randrange(20)
     return result
 
 
@@ -148,4 +148,4 @@ def linear_model_optimization(probabilityDistribution, initializer, matching, mu
 
 linear_model_optimization(chi2.rvs, set_up_population, fittest_selection_matching, mutate_population,
                           crossing, crossover, linear_classifier, loadCIFAR10, stop_condition,
-                          data_visualization, 16, 80, 4, 160, 256, 4)
+                          data_visualization, 16, 85, 4, 160, 256, 4)
