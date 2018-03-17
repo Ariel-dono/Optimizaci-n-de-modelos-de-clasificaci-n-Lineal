@@ -5,6 +5,7 @@ from scipy.stats import norm
 import random
 
 
+
 # randomly generate the first generation
 def set_up_population(probabilityDistribution, individualSize, populationSize, scaleGeneration, bins):
     population = np.array([np.array(probabilityDistribution(int(scaleGeneration/2), size=[bins, individualSize]), dtype=int)])
@@ -148,4 +149,4 @@ def linear_model_optimization(probabilityDistribution, initializer, matching, mu
 
 linear_model_optimization(chi2.rvs, set_up_population, fittest_selection_matching, mutate_population,
                           crossing, crossover, linear_classifier, loadCIFAR10, stop_condition,
-                          data_visualization, 16, 80, 4, 160, 256, 4)
+                          data_visualization, 16, 5, 4, 160, 256, 4)
