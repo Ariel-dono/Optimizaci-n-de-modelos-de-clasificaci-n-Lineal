@@ -96,13 +96,34 @@ def loadCIFAR10(prefixPath):
         caching_data_pool(prefixPath, 'wb', [imgs4bins, labels4bins])
         return [imgs4bins, labels4bins]
 
-def loadIRIS(lengthLoad, isTraining, quantity = None):
+
+def loadIRIS(lengthByBin, isTraining, testLengthByBin = None):
     iris = load_iris()
     data = iris.data
     labels = iris.target
-    if isTraining:
-        return [[data[:lengthLoad], labels[:lengthLoad]]]
-    else:
-        train_data = data[lengthLoad:]
-        train_labels = labels[lengthLoad:]
-        return [[train_data[:quantity], train_labels[:quantity]]]
+    totalLength = len(data)
+    patitionsSize = int(totalLength / 3)
+    i = 0
+    resultdata = []
+    resultlabel = []
+    while(len(data) > 0):
+        contextData = data[:patitionsSize]
+        contextLabels = labels[:patitionsSize]
+        if isTraining:
+            if resultdata == []:
+                resultdata = np.array(contextData[:lengthByBin])
+                resultlabel = np.array(contextLabels[:lengthByBin])
+            else:
+                resultdata = np.append(resultdata, contextData[:lengthByBin], axis=0)
+                resultlabel = np.append(resultlabel, contextLabels[:lengthByBin], axis=0)
+        else:
+            if resultdata == []:
+                resultdata = np.array(contextData[lengthByBin:])
+                resultlabel = np.array(contextLabels[lengthByBin:])
+            else:
+                resultdata = np.append(resultdata, contextData[lengthByBin:], axis=0)
+                resultlabel = np.append(resultlabel, contextLabels[lengthByBin:], axis=0)
+        i += 1
+        data = data[patitionsSize:]
+        labels = labels[patitionsSize:]
+    return [resultdata, resultlabel]

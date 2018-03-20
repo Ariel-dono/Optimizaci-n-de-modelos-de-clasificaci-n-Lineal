@@ -195,7 +195,7 @@ def linear_classifier(svmPopulation, data, quantity):
         quantitySamples = len(data[0])
         for i in range(0, quantitySamples):
             classification = np.dot(svm, data[0][i])
-            tag = int(data[1][i])
+            tag = data[1][i]
             global_loss = hinge(global_loss, classification, tag)
         population_loss = np.append(population_loss, [global_loss/quantitySamples])
         sortedByArgs = np.argsort(population_loss)
@@ -221,15 +221,12 @@ def load_correctness_data(testsQuantity):
 
 
 def iris_loader():
-    result = loadIRIS(100, True)
-    print(result)
-    print(len(result))
-    print(len(result[0]))
+    result = loadIRIS(35, True)
     return result
 
 
 def iris_loader_testing(testsQuantity):
-    return loadIRIS(100, False, testsQuantity)
+    return loadIRIS(35, False, testsQuantity)
 
 
 # Getting acceptable solution
@@ -320,7 +317,7 @@ def linear_model_optimization(probabilityDistribution, initializer, matching, mu
 ## Chi2 + IRIS
 linear_model_optimization(chi2.rvs, set_up_population, fittest_selection_matching, mutate_population, crossing,
                           crossover, linear_classifier, iris_loader, stop_condition, data_visualization,
-                          correctness_validation, iris_loader_testing, 16, 84, 90, 4, 160, 256, 4)
+                          correctness_validation, iris_loader_testing, 16, 0.5, 90, 4, 160, 256, 4)
 
 
 #---- Normal-----#
