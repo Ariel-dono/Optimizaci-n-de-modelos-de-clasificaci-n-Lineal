@@ -315,9 +315,9 @@ def linear_model_optimization(probabilityDistribution, initializer, matching, mu
 #                          correctness_validation, load_correctness_data, 16, 84, 90, 4, 160, 256, 4)
 
 ## Chi2 + IRIS
-linear_model_optimization(chi2.rvs, set_up_population, fittest_selection_matching, mutate_population, crossing,
-                          crossover, linear_classifier, iris_loader, stop_condition, data_visualization,
-                          correctness_validation, iris_loader_testing, 16, 0.5, 90, 4, 160, 256, 4)
+#linear_model_optimization(chi2.rvs, set_up_population, fittest_selection_matching, mutate_population, crossing,
+#                          crossover, linear_classifier, iris_loader, stop_condition, data_visualization,
+#                          correctness_validation, iris_loader_testing, 16, 0.1, 98, 4, 160, 256, 4)
 
 
 #---- Normal-----#
