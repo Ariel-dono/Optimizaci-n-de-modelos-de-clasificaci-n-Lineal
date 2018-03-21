@@ -113,9 +113,10 @@ def mutate_population(child):
 def crossoverNorm(pMutation, pParentA, pParentB, pDominant):
     if (pDominant==1):
         newIndvidual = pParentA
+        print pParentA
     else:
         newIndvidual = pParentB
-    return (newIndvidual)
+    return pMutation([newIndvidual])[0]
 def crossover(mutate, parentA, parentB, dominance):
     if dominance:
         result = parentA
@@ -139,11 +140,8 @@ def dominant_selectionNorm(pMutation, pCrossover, pPair):
     for i in range(0, classes):
         dominant = getDominant()
         newIndvidual[i] = pCrossover(pMutation, pPair[0][i], pPair[1][i], dominant)
-    #mutate=getDominant()
-    #if mutate:
     return pMutation(newIndvidual)
-    #else:
-    #    return(newIndvidual)
+    
 
 
 # dominant chromosomic selection
@@ -291,7 +289,8 @@ def loss_index(adaptability, lossLog, population, data, quantity):
 # linear classification model
 def linear_model_optimization(probabilityDistribution, initializer, matching, mutate, crossing, crossover, adaptability,
                               loadData, genValidation, correctnessAnalysis, correctnessValidation, loadTestData,
-                              optimalIndividual, thresholdLoss, thresholdCorrectness, nValidationGeneration, populationSize, scaleGeneration, bins):
+                              optimalIndividual, thresholdLoss, thresholdCorrectness, nValidationGeneration,
+                              populationSize, scaleGeneration, bins):
     lossLog = []
     correctnessLog = []
     data = loadData()
@@ -308,7 +307,9 @@ def linear_model_optimization(probabilityDistribution, initializer, matching, mu
         correctnessLog = correctnessValidation(loadTestData, correctnessLog, OptimalSVMLog[0])
         generation += 1
     correctnessAnalysis(lossLog, correctnessLog, OptimalSVMLog[0])
-
+    
+#---- Chi2-----#
+    
 ## Chi2 + CIFAR
 #linear_model_optimization(chi2.rvs, set_up_population, fittest_selection_matching, mutate_population, crossing,
 #                          crossover, linear_classifier, load_cifar10, stop_condition, data_visualization,
@@ -321,6 +322,11 @@ def linear_model_optimization(probabilityDistribution, initializer, matching, mu
 
 
 #---- Normal-----#
-#linear_model_optimization(norm.rvs, set_up_populationNorm, matching, mutationAlgthm,
-#                          crossingNorm, crossoverNorm, linear_classifier, load_cifar10, stop_condition,
-#                          data_visualization, correctness_validation, load_correctness_data, 16, 84, 90, 4, 160, 256, 4)
+## Normal + CIFAR
+linear_model_optimization(norm.rvs, set_up_populationNorm, matching, mutationAlgthm,
+                          crossingNorm, crossoverNorm, linear_classifier, load_cifar10, stop_condition,
+                          data_visualization, correctness_validation, load_correctness_data, 16, 84, 90, 4, 160, 256, 4)
+## Normal + IRIRS
+linear_model_optimization(norm.rvs, set_up_populationNorm, matching, mutationAlgthm,
+                          crossingNorm, crossoverNorm, linear_classifier, iris_loader, stop_condition,
+                          data_visualization, correctness_validation, iris_loader_testing, 16, 0.5, 90, 4, 160, 256, 4)
